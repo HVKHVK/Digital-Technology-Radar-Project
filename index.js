@@ -307,41 +307,14 @@ class App extends React.Component {
             .on("mousemove", mousemoveCircle)
             .on("mouseleave", mouseleaveCircle);
 
-        var textTooltip = d3.select("#third")
-            .append("div")
-            .style("opacity", 0)
-            .style("position", "absolute")
-            .attr("class", "tooltip")
-            .style("background-color", "white")
-            .style("border", "solid")
-            .style("border-width", "2px")
-            .style("border-radius", "5px")
-
-        var mouseoverText = function(d) {
-            textTooltip
-                .style("opacity", 1)
-        }
-        var mousemoveText = function(d) {
-            textTooltip
-                .html(d.description)
-                .style("left", (d3.mouse(this)[0]) + "px")
-                .style("top", (d3.mouse(this)[1]) + "px")
-        }
-        var mouseleaveText = function(d) {
-            textTooltip
-                .style("opacity", 0)
-        }
-
         let items = d3.select(this.itemArea).selectAll('text').data(allData);
+
 
         items.enter().append('text')
             .attr( 'x', (d) => d.itemX)
             .attr( 'y', (d) => d.itemY)
             .text(function (d) {return d.item})
-            .on("mouseover", mouseoverText)
-            .on("mousemove", mousemoveText)
-            .on("mouseleave", mouseleaveText)
-            .on("click", function(d) { alert(d.description); })
+            .on("click", function (d){ d3.select(this).text(d.description)})
     }
 
     render() {
@@ -437,7 +410,7 @@ class App extends React.Component {
                     </svg>
                 </div>
                 <div id="third">
-                    <svg width={400} height={600}>
+                    <svg width={500} height={600}>
                         <text x={20} y={30} stroke={"black"} fontSize={"15px"}>Preparedness</text>
                         <text x={120} y={30} stroke={"black"} fontSize={"15px"}>Response</text>
                         <text x={220} y={30} stroke={"black"} fontSize={"15px"}>Resilience</text>
