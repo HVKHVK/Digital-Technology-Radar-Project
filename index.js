@@ -1,4 +1,4 @@
-const width = window.innerWidth;
+const width = window.innerWidth-600;
 const height = window.innerHeight;
 const centerX = width / 2;
 const centerY = height / 2;
@@ -200,7 +200,7 @@ class App extends React.Component {
         let circles = d3.select(this.chartArea).selectAll('circle').data(allData);
 
         circles.enter().append('circle')
-            .attr('r', (d) => 3)
+            .attr('r', (d) => 5)
             .attr('fill', (d) => d.color)
             .attr('cx', (d) => d.x)
             .attr('cy', (d) => d.y);
@@ -211,7 +211,44 @@ class App extends React.Component {
 
         return (
             <div className="container">
-                <div>
+                <div  id="first">
+                    <svg width={300} height={500}>
+                        <g transform={`translate(0,0)`}>
+                            <text x={10} y={50} fontSize={"2em"} stroke={"black"} >Technologies</text>
+                            <circle cx={30} cy={80} r={20} stroke={"black"} fill={"red"} />
+                            <circle cx={30} cy={130} r={20} stroke={"black"} fill={"blue"} />
+                            <circle cx={30} cy={180} r={20} stroke={"black"} fill={"green"} />
+                            <circle cx={30} cy={230} r={20} stroke={"black"} fill={"orange"} />
+                            <circle cx={30} cy={280} r={20} stroke={"black"} fill={"yellow"} />
+                            <circle cx={30} cy={330} r={20} stroke={"black"} fill={"purple"} />
+                        </g>
+                        <g id="g1" transform={`translate(0,0)`}>
+                            <rect x={70} y={60} width={200} height={40} fill={"white"} strokeWidth={1} stroke={"black"} />
+                            <text x={75} y={85} fontSize={"1em"} stroke={"black"} >Natural Language Processing</text>
+                        </g>
+                        <g id="g2" transform={`translate(0,0)`}>
+                            <rect x={70} y={110} width={130} height={40} fill={"white"} strokeWidth={1} stroke={"black"} />
+                            <text x={75} y={135} fontSize={"1em"} stroke={"black"} >Machine Learning</text>
+                        </g>
+                        <g id="g3" transform={`translate(0,0)`}>
+                            <rect x={70} y={160} width={60} height={40} fill={"white"} strokeWidth={1} stroke={"black"} />
+                            <text x={75} y={185} fontSize={"1em"} stroke={"black"} >Drones</text>
+                        </g>
+                        <g id="g4" transform={`translate(0,0)`}>
+                            <rect x={70} y={210} width={90} height={40} fill={"white"} strokeWidth={1} stroke={"black"} />
+                            <text x={75} y={235} fontSize={"1em"} stroke={"black"} >Blockchain</text>
+                        </g>
+                        <g id="g5" transform={`translate(0,0)`}>
+                            <rect x={70} y={260} width={150} height={40} fill={"white"} strokeWidth={1} stroke={"black"} />
+                            <text x={75} y={285} fontSize={"1em"} stroke={"black"} >Artificial Intelligence</text>
+                        </g>
+                        <g id="g6" transform={`translate(0,0)`}>
+                            <rect x={70} y={310} width={100} height={40} fill={"white"} strokeWidth={1} stroke={"black"} />
+                            <text x={75} y={335} fontSize={"1em"} stroke={"black"} >Social Media</text>
+                        </g>
+                    </svg>
+                </div>
+                <div id="second">
                     <svg width={width} height={height}>
                         <g transform={`translate(${centerX},${centerY})`}>
                             <path d={firstOuterArc()}/>
