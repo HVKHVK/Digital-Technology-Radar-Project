@@ -1,5 +1,5 @@
-const width = window.innerWidth-600;
-const height = window.innerHeight;
+const width = 800;
+const height = 600;
 const centerX = width / 2;
 const centerY = height / 2;
 const lineThickness = 1;
@@ -7,6 +7,7 @@ const outerRadarLine = 240;
 const middleOutRadarLine = 180;
 const middleInRadarLine = 120;
 const innerRadarLine = 60;
+const lineSep = 15;
 const title = "Technology Radar";
 
 const firstOuterArc = d3.arc()
@@ -105,7 +106,6 @@ const fourthInnerArc = d3.arc()
     .startAngle(Math.PI * 3 / 2)
     .endAngle(2 * Math.PI);
 
-
 class App extends React.Component {
     constructor(props) {
         super(props);
@@ -114,6 +114,9 @@ class App extends React.Component {
             Var1: "Quadrant",
             Var2: "Level of implementation",
             Var3: "Technology",
+            Var4: "Title",
+            Var5: "Description",
+            counter: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         };
     }
     componentDidMount() {
@@ -126,55 +129,123 @@ class App extends React.Component {
         let allData = this.state.data.map((d) => {
             let xPoint = 0;
             let yPoint = 0;
-            let color = "black"
+            let color = "black";
+            let title =  "-Item " + d[this.state.Var4].split(" ")[2];
+            let itemX = 0;
+            let itemY = 0;
+            let description = "";
             if (d[this.state.Var1] === "response" && d[this.state.Var2] === "production") {
                 xPoint = Math.floor(Math.random() * (innerRadarLine-30));
                 yPoint = -Math.sqrt(Math.pow(innerRadarLine - 30, 2) - Math.pow(xPoint, 2));
+                itemX = 120;
+                itemY = 520 + this.state.counter[0] * lineSep;
+                this.state.counter[0]++;
+                description = d[this.state.Var5];
             }else if (d[this.state.Var1] === "response" && d[this.state.Var2] === "validation") {
                 xPoint = Math.floor(Math.random() * (middleInRadarLine-30));
                 yPoint = Math.floor(-Math.sqrt(Math.pow(middleInRadarLine - 30, 2) - Math.pow(xPoint, 2)));
+                itemX = 120;
+                itemY = 370 + this.state.counter[1] * lineSep;
+                this.state.counter[1]++;
+                description = d[this.state.Var5];
             }else if (d[this.state.Var1] === "response" && d[this.state.Var2] === "prototype") {
                 xPoint = Math.floor(Math.random() * (middleOutRadarLine-30));
                 yPoint = Math.floor(-Math.sqrt(Math.pow(middleOutRadarLine - 30, 2) - Math.pow(xPoint, 2)));
+                itemX = 120;
+                itemY = 220 + this.state.counter[2] * lineSep;
+                this.state.counter[2]++;
+                description = d[this.state.Var5];
             }else if (d[this.state.Var1] === "response" && d[this.state.Var2] === "idea") {
                 xPoint = Math.floor(Math.random() * (outerRadarLine-30));
                 yPoint = Math.floor(-Math.sqrt(Math.pow(outerRadarLine - 30, 2) - Math.pow(xPoint, 2)));
+                itemX = 120;
+                itemY = 70 + this.state.counter[3] * lineSep;
+                this.state.counter[3]++;
+                description = d[this.state.Var5];
             }else if (d[this.state.Var1] === "recovery" && d[this.state.Var2] === "production") {
                 xPoint = Math.floor(Math.random() * (innerRadarLine-30));
                 yPoint = Math.floor(Math.sqrt(Math.pow(innerRadarLine - 30, 2) - Math.pow(xPoint, 2)));
+                itemX = 320;
+                itemY = 520 + this.state.counter[4] * lineSep;
+                this.state.counter[4]++;
+                description = d[this.state.Var5];
             }else if (d[this.state.Var1] === "recovery" && d[this.state.Var2] === "validation") {
                 xPoint = Math.floor(Math.random() * (middleInRadarLine-30));
                 yPoint = Math.floor(Math.sqrt(Math.pow(middleInRadarLine - 30, 2) - Math.pow(xPoint, 2)));
+                itemX = 320;
+                itemY = 370 + this.state.counter[5] * lineSep;
+                this.state.counter[5]++;
+                description = d[this.state.Var5];
             }else if (d[this.state.Var1] === "recovery" && d[this.state.Var2] === "prototype") {
                 xPoint = Math.floor(Math.random() * (middleOutRadarLine-30));
                 yPoint = Math.floor(Math.sqrt(Math.pow(middleOutRadarLine - 30, 2) - Math.pow(xPoint, 2)));
+                itemX = 320;
+                itemY = 220 + this.state.counter[6] * lineSep;
+                this.state.counter[6]++;
+                description = d[this.state.Var5];
             }else if (d[this.state.Var1] === "recovery" && d[this.state.Var2] === "idea") {
                 xPoint = Math.floor(Math.random() * (outerRadarLine-30));
                 yPoint = Math.floor(Math.sqrt(Math.pow(outerRadarLine - 30, 2) - Math.pow(xPoint, 2)));
+                itemX = 320;
+                itemY = 70 + this.state.counter[7] * lineSep;
+                this.state.counter[7]++;
+                description = d[this.state.Var5];
             }else if (d[this.state.Var1] === "resilience" && d[this.state.Var2] === "production") {
                 xPoint = -Math.floor(Math.random() * (innerRadarLine-30));
                 yPoint = Math.floor(Math.sqrt(Math.pow(innerRadarLine - 30, 2) - Math.pow(xPoint, 2)));
+                itemX = 220;
+                itemY = 520 + this.state.counter[8] * lineSep;
+                this.state.counter[8]++;
+                description = d[this.state.Var5];
             }else if (d[this.state.Var1] === "resilience" && d[this.state.Var2] === "validation") {
                 xPoint = -Math.floor(Math.random() * (middleInRadarLine-30));
                 yPoint = Math.floor(Math.sqrt(Math.pow(middleInRadarLine - 30, 2) - Math.pow(xPoint, 2)));
+                itemX = 220;
+                itemY = 370 + this.state.counter[9] * lineSep;
+                this.state.counter[9]++;
+                description = d[this.state.Var5];
             }else if (d[this.state.Var1] === "resilience" && d[this.state.Var2] === "prototype") {
                 xPoint = -Math.floor(Math.random() * (middleOutRadarLine-30));
                 yPoint = Math.floor(Math.sqrt(Math.pow(middleOutRadarLine - 30, 2) - Math.pow(xPoint, 2)));
+                itemX = 220;
+                itemY = 220 + this.state.counter[10] * lineSep;
+                this.state.counter[10]++;
+                description = d[this.state.Var5];
             }else if (d[this.state.Var1] === "resilience" && d[this.state.Var2] === "idea") {
                 xPoint = -Math.floor(Math.random() * (outerRadarLine-30));
                 yPoint = Math.floor(Math.sqrt(Math.pow(outerRadarLine - 30, 2) - Math.pow(xPoint, 2)));
+                itemX = 220;
+                itemY = 70 + this.state.counter[11] * lineSep;
+                this.state.counter[11]++;
+                description = d[this.state.Var5];
             }else if (d[this.state.Var1] === "preparedness" && d[this.state.Var2] === "production") {
                 xPoint = -Math.floor(Math.random() * (innerRadarLine-30));
                 yPoint = -Math.floor(Math.sqrt(Math.pow(innerRadarLine - 30, 2) - Math.pow(xPoint, 2)));
+                itemX = 20;
+                itemY = 520 + this.state.counter[12] * lineSep;
+                this.state.counter[12]++;
+                description = d[this.state.Var5];
             }else if (d[this.state.Var1] === "preparedness" && d[this.state.Var2] === "validation") {
                 xPoint = -Math.floor(Math.random() * (middleInRadarLine-30));
                 yPoint = -Math.floor(Math.sqrt(Math.pow(middleInRadarLine - 30, 2) - Math.pow(xPoint, 2)));
+                itemX = 20;
+                itemY = 370 + this.state.counter[13] * lineSep;
+                this.state.counter[13]++;
+                description = d[this.state.Var5];
             }else if (d[this.state.Var1] === "preparedness" && d[this.state.Var2] === "prototype") {
                 xPoint = -Math.floor(Math.random() * (middleOutRadarLine-30));
                 yPoint = -Math.floor(Math.sqrt(Math.pow(middleOutRadarLine - 30, 2) - Math.pow(xPoint, 2)));
+                itemX = 20;
+                itemY = 220 + this.state.counter[14] * lineSep;
+                this.state.counter[14]++;
+                description = d[this.state.Var5];
             }else if (d[this.state.Var1] === "preparedness" && d[this.state.Var2] === "idea") {
                 xPoint = -Math.floor(Math.random() * (outerRadarLine-30));
                 yPoint = -Math.floor(Math.sqrt(Math.pow(outerRadarLine - 30, 2) - Math.pow(xPoint, 2)));
+                itemX = 20;
+                itemY = 70 + this.state.counter[15] * lineSep;
+                this.state.counter[15]++;
+                description = d[this.state.Var5];
             }
             if(d[this.state.Var3] === "Natural Language Processing"){
                 color = "red";
@@ -189,30 +260,95 @@ class App extends React.Component {
             } else if(d[this.state.Var3] === "Social Media"){
                 color = "purple";
             }
-
             return {
                 x: xPoint,
                 y: yPoint,
-                color: color
+                color: color,
+                item: title,
+                itemX: itemX,
+                itemY: itemY,
+                description:description,
             };
         });
 
-        let circles = d3.select(this.chartArea).selectAll('circle').data(allData);
+        var circleTooltip = d3.select("#second")
+            .append("div")
+            .style("opacity", 0)
+            .style("position", "absolute")
+            .attr("class", "tooltip")
+            .style("background-color", "white")
+            .style("border", "solid")
+            .style("border-width", "2px")
+            .style("border-radius", "5px")
+
+        var mouseoverCircle = function(d) {
+            circleTooltip
+                .style("opacity", 1)
+        }
+        var mousemoveCircle = function(d) {
+            circleTooltip
+                .html(d.item)
+                .style("left", (d3.mouse(this)[0])+centerX + "px")
+                .style("top", (d3.mouse(this)[1])+centerY + "px")
+        }
+        var mouseleaveCircle = function(d) {
+            circleTooltip
+                .style("opacity", 0)
+        }
+
+        let circles = d3.select(this.circleArea).selectAll('circle').data(allData);
 
         circles.enter().append('circle')
             .attr('r', (d) => 5)
             .attr('fill', (d) => d.color)
             .attr('cx', (d) => d.x)
-            .attr('cy', (d) => d.y);
+            .attr('cy', (d) => d.y)
+            .on("mouseover", mouseoverCircle)
+            .on("mousemove", mousemoveCircle)
+            .on("mouseleave", mouseleaveCircle);
+
+        var textTooltip = d3.select("#third")
+            .append("div")
+            .style("opacity", 0)
+            .style("position", "absolute")
+            .attr("class", "tooltip")
+            .style("background-color", "white")
+            .style("border", "solid")
+            .style("border-width", "2px")
+            .style("border-radius", "5px")
+
+        var mouseoverText = function(d) {
+            textTooltip
+                .style("opacity", 1)
+        }
+        var mousemoveText = function(d) {
+            textTooltip
+                .html(d.description)
+                .style("left", (d3.mouse(this)[0]) + "px")
+                .style("top", (d3.mouse(this)[1]) + "px")
+        }
+        var mouseleaveText = function(d) {
+            textTooltip
+                .style("opacity", 0)
+        }
+
+        let items = d3.select(this.itemArea).selectAll('text').data(allData);
+
+        items.enter().append('text')
+            .attr( 'x', (d) => d.itemX)
+            .attr( 'y', (d) => d.itemY)
+            .text(function (d) {return d.item})
+            .on("mouseover", mouseoverText)
+            .on("mousemove", mousemoveText)
+            .on("mouseleave", mouseleaveText);
     }
 
     render() {
         this.updatePoints()
-
         return (
             <div className="container">
-                <div  id="first">
-                    <svg width={300} height={500}>
+                <div id="first">
+                    <svg width={300} height={600}>
                         <g transform={`translate(0,0)`}>
                             <text x={10} y={50} fontSize={"2em"} stroke={"black"} >Technologies</text>
                             <circle cx={30} cy={80} r={20} stroke={"black"} fill={"red"} />
@@ -295,8 +431,34 @@ class App extends React.Component {
                         <g transform={`translate(${centerX},0)`}>
                             <text y={40} stroke={"black"} fontSize={"2em"} textAnchor={"middle"}>{title}</text>
                         </g>
-                        <g ref={(node) => { this.chartArea = node; }}
+                        <g id="circleGroup" ref={(node) => { this.circleArea = node; }}
                            transform={`translate(${centerX}, ${centerY})`} />
+                    </svg>
+                </div>
+                <div id="third">
+                    <svg width={400} height={600}>
+                        <text x={20} y={30} stroke={"black"} fontSize={"15px"}>Preparedness</text>
+                        <text x={120} y={30} stroke={"black"} fontSize={"15px"}>Response</text>
+                        <text x={220} y={30} stroke={"black"} fontSize={"15px"}>Resilience</text>
+                        <text x={320} y={30} stroke={"black"} fontSize={"15px"}>Recovery</text>
+                        <text x={20} y={50} stroke={"black"} fontSize={"15px"}>Idea</text>
+                        <text x={120} y={50} stroke={"black"} fontSize={"15px"}>Idea</text>
+                        <text x={220} y={50} stroke={"black"} fontSize={"15px"}>Idea</text>
+                        <text x={320} y={50} stroke={"black"} fontSize={"15px"}>Idea</text>
+                        <text x={20} y={200} stroke={"black"} fontSize={"15px"}>Prototype</text>
+                        <text x={120} y={200} stroke={"black"} fontSize={"15px"}>Prototype</text>
+                        <text x={220} y={200} stroke={"black"} fontSize={"15px"}>Prototype</text>
+                        <text x={320} y={200} stroke={"black"} fontSize={"15px"}>Prototype</text>
+                        <text x={20} y={350} stroke={"black"} fontSize={"15px"}>Validation</text>
+                        <text x={120} y={350} stroke={"black"} fontSize={"15px"}>Validation</text>
+                        <text x={220} y={350} stroke={"black"} fontSize={"15px"}>Validation</text>
+                        <text x={320} y={350} stroke={"black"} fontSize={"15px"}>Validation</text>
+                        <text x={20} y={500} stroke={"black"} fontSize={"15px"}>Production</text>
+                        <text x={120} y={500} stroke={"black"} fontSize={"15px"}>Production</text>
+                        <text x={220} y={500} stroke={"black"} fontSize={"15px"}>Production</text>
+                        <text x={320} y={500} stroke={"black"} fontSize={"15px"}>Production</text>
+                        <g id={"itemGroup"} ref={(node) => { this.itemArea = node; }}
+                           transform={`translate(0,0)`} />
                     </svg>
                 </div>
             </div>
