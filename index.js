@@ -116,7 +116,8 @@ class App extends React.Component {
             Var3: "Technology",
             Var4: "Title",
             Var5: "Description",
-            counter: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+            counter: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+            itemId: 0
         };
     }
     componentDidMount() {
@@ -141,6 +142,7 @@ class App extends React.Component {
                 itemY = 520 + this.state.counter[0] * lineSep;
                 this.state.counter[0]++;
                 description = d[this.state.Var5];
+                this.state.itemId++;
             }else if (d[this.state.Var1] === "response" && d[this.state.Var2] === "validation") {
                 xPoint = Math.floor(Math.random() * (middleInRadarLine-30));
                 yPoint = Math.floor(-Math.sqrt(Math.pow(middleInRadarLine - 30, 2) - Math.pow(xPoint, 2)));
@@ -148,6 +150,7 @@ class App extends React.Component {
                 itemY = 370 + this.state.counter[1] * lineSep;
                 this.state.counter[1]++;
                 description = d[this.state.Var5];
+                this.state.itemId++;
             }else if (d[this.state.Var1] === "response" && d[this.state.Var2] === "prototype") {
                 xPoint = Math.floor(Math.random() * (middleOutRadarLine-30));
                 yPoint = Math.floor(-Math.sqrt(Math.pow(middleOutRadarLine - 30, 2) - Math.pow(xPoint, 2)));
@@ -155,6 +158,7 @@ class App extends React.Component {
                 itemY = 220 + this.state.counter[2] * lineSep;
                 this.state.counter[2]++;
                 description = d[this.state.Var5];
+                this.state.itemId++;
             }else if (d[this.state.Var1] === "response" && d[this.state.Var2] === "idea") {
                 xPoint = Math.floor(Math.random() * (outerRadarLine-30));
                 yPoint = Math.floor(-Math.sqrt(Math.pow(outerRadarLine - 30, 2) - Math.pow(xPoint, 2)));
@@ -162,6 +166,7 @@ class App extends React.Component {
                 itemY = 70 + this.state.counter[3] * lineSep;
                 this.state.counter[3]++;
                 description = d[this.state.Var5];
+                this.state.itemId++;
             }else if (d[this.state.Var1] === "recovery" && d[this.state.Var2] === "production") {
                 xPoint = Math.floor(Math.random() * (innerRadarLine-30));
                 yPoint = Math.floor(Math.sqrt(Math.pow(innerRadarLine - 30, 2) - Math.pow(xPoint, 2)));
@@ -169,6 +174,7 @@ class App extends React.Component {
                 itemY = 520 + this.state.counter[4] * lineSep;
                 this.state.counter[4]++;
                 description = d[this.state.Var5];
+                this.state.itemId++;
             }else if (d[this.state.Var1] === "recovery" && d[this.state.Var2] === "validation") {
                 xPoint = Math.floor(Math.random() * (middleInRadarLine-30));
                 yPoint = Math.floor(Math.sqrt(Math.pow(middleInRadarLine - 30, 2) - Math.pow(xPoint, 2)));
@@ -176,6 +182,7 @@ class App extends React.Component {
                 itemY = 370 + this.state.counter[5] * lineSep;
                 this.state.counter[5]++;
                 description = d[this.state.Var5];
+                this.state.itemId++;
             }else if (d[this.state.Var1] === "recovery" && d[this.state.Var2] === "prototype") {
                 xPoint = Math.floor(Math.random() * (middleOutRadarLine-30));
                 yPoint = Math.floor(Math.sqrt(Math.pow(middleOutRadarLine - 30, 2) - Math.pow(xPoint, 2)));
@@ -183,6 +190,7 @@ class App extends React.Component {
                 itemY = 220 + this.state.counter[6] * lineSep;
                 this.state.counter[6]++;
                 description = d[this.state.Var5];
+                this.state.itemId++;
             }else if (d[this.state.Var1] === "recovery" && d[this.state.Var2] === "idea") {
                 xPoint = Math.floor(Math.random() * (outerRadarLine-30));
                 yPoint = Math.floor(Math.sqrt(Math.pow(outerRadarLine - 30, 2) - Math.pow(xPoint, 2)));
@@ -190,6 +198,7 @@ class App extends React.Component {
                 itemY = 70 + this.state.counter[7] * lineSep;
                 this.state.counter[7]++;
                 description = d[this.state.Var5];
+                this.state.itemId++;
             }else if (d[this.state.Var1] === "resilience" && d[this.state.Var2] === "production") {
                 xPoint = -Math.floor(Math.random() * (innerRadarLine-30));
                 yPoint = Math.floor(Math.sqrt(Math.pow(innerRadarLine - 30, 2) - Math.pow(xPoint, 2)));
@@ -197,6 +206,7 @@ class App extends React.Component {
                 itemY = 520 + this.state.counter[8] * lineSep;
                 this.state.counter[8]++;
                 description = d[this.state.Var5];
+                this.state.itemId++;
             }else if (d[this.state.Var1] === "resilience" && d[this.state.Var2] === "validation") {
                 xPoint = -Math.floor(Math.random() * (middleInRadarLine-30));
                 yPoint = Math.floor(Math.sqrt(Math.pow(middleInRadarLine - 30, 2) - Math.pow(xPoint, 2)));
@@ -204,6 +214,7 @@ class App extends React.Component {
                 itemY = 370 + this.state.counter[9] * lineSep;
                 this.state.counter[9]++;
                 description = d[this.state.Var5];
+                this.state.itemId++;
             }else if (d[this.state.Var1] === "resilience" && d[this.state.Var2] === "prototype") {
                 xPoint = -Math.floor(Math.random() * (middleOutRadarLine-30));
                 yPoint = Math.floor(Math.sqrt(Math.pow(middleOutRadarLine - 30, 2) - Math.pow(xPoint, 2)));
@@ -211,6 +222,7 @@ class App extends React.Component {
                 itemY = 220 + this.state.counter[10] * lineSep;
                 this.state.counter[10]++;
                 description = d[this.state.Var5];
+                this.state.itemId++;
             }else if (d[this.state.Var1] === "resilience" && d[this.state.Var2] === "idea") {
                 xPoint = -Math.floor(Math.random() * (outerRadarLine-30));
                 yPoint = Math.floor(Math.sqrt(Math.pow(outerRadarLine - 30, 2) - Math.pow(xPoint, 2)));
@@ -218,6 +230,7 @@ class App extends React.Component {
                 itemY = 70 + this.state.counter[11] * lineSep;
                 this.state.counter[11]++;
                 description = d[this.state.Var5];
+                this.state.itemId++;
             }else if (d[this.state.Var1] === "preparedness" && d[this.state.Var2] === "production") {
                 xPoint = -Math.floor(Math.random() * (innerRadarLine-30));
                 yPoint = -Math.floor(Math.sqrt(Math.pow(innerRadarLine - 30, 2) - Math.pow(xPoint, 2)));
@@ -225,6 +238,7 @@ class App extends React.Component {
                 itemY = 520 + this.state.counter[12] * lineSep;
                 this.state.counter[12]++;
                 description = d[this.state.Var5];
+                this.state.itemId++;
             }else if (d[this.state.Var1] === "preparedness" && d[this.state.Var2] === "validation") {
                 xPoint = -Math.floor(Math.random() * (middleInRadarLine-30));
                 yPoint = -Math.floor(Math.sqrt(Math.pow(middleInRadarLine - 30, 2) - Math.pow(xPoint, 2)));
@@ -232,6 +246,7 @@ class App extends React.Component {
                 itemY = 370 + this.state.counter[13] * lineSep;
                 this.state.counter[13]++;
                 description = d[this.state.Var5];
+                this.state.itemId++;
             }else if (d[this.state.Var1] === "preparedness" && d[this.state.Var2] === "prototype") {
                 xPoint = -Math.floor(Math.random() * (middleOutRadarLine-30));
                 yPoint = -Math.floor(Math.sqrt(Math.pow(middleOutRadarLine - 30, 2) - Math.pow(xPoint, 2)));
@@ -239,6 +254,7 @@ class App extends React.Component {
                 itemY = 220 + this.state.counter[14] * lineSep;
                 this.state.counter[14]++;
                 description = d[this.state.Var5];
+                this.state.itemId++;
             }else if (d[this.state.Var1] === "preparedness" && d[this.state.Var2] === "idea") {
                 xPoint = -Math.floor(Math.random() * (outerRadarLine-30));
                 yPoint = -Math.floor(Math.sqrt(Math.pow(outerRadarLine - 30, 2) - Math.pow(xPoint, 2)));
@@ -246,6 +262,7 @@ class App extends React.Component {
                 itemY = 70 + this.state.counter[15] * lineSep;
                 this.state.counter[15]++;
                 description = d[this.state.Var5];
+                this.state.itemId++;
             }
             if(d[this.state.Var3] === "Natural Language Processing"){
                 color = "red";
@@ -268,12 +285,13 @@ class App extends React.Component {
                 itemX: itemX,
                 itemY: itemY,
                 description:description,
+                itemId: "t" + this.state.itemId
             };
         });
 
         var circleTooltip = d3.select("#second")
             .append("div")
-            .style("opacity", 0)
+            .style("opacity", 1)
             .style("position", "absolute")
             .attr("class", "tooltip")
             .style("background-color", "white")
@@ -296,25 +314,27 @@ class App extends React.Component {
                 .style("opacity", 0)
         }
 
+        let items = d3.select(this.itemArea).selectAll('text').data(allData);
+
+        items.enter().append('text')
+            .attr( 'x', (d) => d.itemX)
+            .attr( 'y', (d) => d.itemY)
+            .attr("id", (d) => d.itemId)
+            .text(function (d) {return d.item})
+            .on("click", function (d){d3.select(this).text(d.description)})
+
         let circles = d3.select(this.circleArea).selectAll('circle').data(allData);
 
         circles.enter().append('circle')
-            .attr('r', (d) => 5)
+            .attr('r', 7)
             .attr('fill', (d) => d.color)
             .attr('cx', (d) => d.x)
             .attr('cy', (d) => d.y)
             .on("mouseover", mouseoverCircle)
             .on("mousemove", mousemoveCircle)
-            .on("mouseleave", mouseleaveCircle);
+            .on("mouseleave", mouseleaveCircle)
+            .on("click", function (d){ d3.select("#third").select("#"+d.itemId).text(d.description)})
 
-        let items = d3.select(this.itemArea).selectAll('text').data(allData);
-
-
-        items.enter().append('text')
-            .attr( 'x', (d) => d.itemX)
-            .attr( 'y', (d) => d.itemY)
-            .text(function (d) {return d.item})
-            .on("click", function (d){ d3.select(this).text(d.description)})
     }
 
     render() {
