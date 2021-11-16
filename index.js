@@ -340,7 +340,8 @@ class App extends React.Component {
             .text(function (d) {return d.item})
             .on("mouseover", mouseoverText)
             .on("mousemove", mousemoveText)
-            .on("mouseleave", mouseleaveText);
+            .on("mouseleave", mouseleaveText)
+            .on("click", function(d) { alert(d.description); })
     }
 
     render() {
