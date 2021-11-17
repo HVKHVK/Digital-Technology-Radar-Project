@@ -1,13 +1,10 @@
 #first {
     float:left;
     position: static;
-
 }
 #second {
     float:left;
     position: relative;
-
-
 }
 #third {
     float:left;

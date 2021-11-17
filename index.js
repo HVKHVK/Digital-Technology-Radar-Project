@@ -334,7 +334,6 @@ class App extends React.Component {
             .on("mousemove", mousemoveCircle)
             .on("mouseleave", mouseleaveCircle)
             .on("click", function (d){ d3.select("#third").select("#"+d.itemId).text(d.description)})
-
     }
 
     render() {
@@ -456,7 +455,6 @@ class App extends React.Component {
                     </svg>
                 </div>
             </div>
-
         )
     }
 }
